@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:maps="clr-namespace:Noa.PocketUi.Main.Maps"
+       xmlns:pages="clr-namespace:Noa.PocketUi.Main.Pages"
+       x:Class="Noa.PocketUi.Main.MainPage"
+       Title="NOA">
+    <TabBar>
+        <Tab Title="Messages" Icon="message">
+            <ShellContent ContentTemplate="{DataTemplate pages:Messages}" />
+        </Tab>
+        <Tab Title="Map" Icon="map">
+            <ShellContent ContentTemplate="{DataTemplate maps:BasicMapGallery}" />
+        </Tab>
+        <Tab Title="Profile" Icon="user">
+            <ShellContent ContentTemplate="{DataTemplate pages:Profile}" />
+        </Tab>
+    </TabBar>
+</Shell>
