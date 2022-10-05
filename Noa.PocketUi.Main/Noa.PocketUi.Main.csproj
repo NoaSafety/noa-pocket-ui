@@ -49,8 +49,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.0-rc.1.22426.10" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0-rc.1.22426.10" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0-rc.1.22426.10" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0-rc.1.22426.10" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.0-rc.1.6683" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Noa.PocketUI.Client\Noa.PocketUI.Client.csproj" />
+	  <ProjectReference Include="..\Noa.PocketUi.Contract\Noa.PocketUi.Contract.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -72,10 +81,13 @@
 	  <MauiXaml Update="Maps\PolygonsGallery.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Messages.xaml">
+	  <MauiXaml Update="Views\Map.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Pages\Profile.xaml">
+	  <MauiXaml Update="Views\Messages.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Profile.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

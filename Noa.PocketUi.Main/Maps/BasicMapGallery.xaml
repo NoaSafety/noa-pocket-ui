@@ -8,7 +8,7 @@
 
     <Grid RowDefinitions="Auto, Auto, *">
         <HorizontalStackLayout Grid.Row="0">
-            <Switch x:Name="ShowUserLocationSwitch" Margin="5"/>
+            <Switch x:Name="ShowUserLocationSwitch" Margin="5" IsToggled="True"/>
             <Label Text="Show user" VerticalOptions="Center"/>
             <Switch x:Name="ShowTrafficSwitch" Margin="5"/>
             <Label Text="Show traffic" VerticalOptions="Center"/>
@@ -20,9 +20,6 @@
             <Label Text="Scroll enabled" VerticalOptions="Center"/>
         </HorizontalStackLayout>
         <Map x:Name="basicMap" Grid.Row="2" 
-             IsShowingUser="{Binding IsToggled, Source={x:Reference ShowUserLocationSwitch}}"
-             IsTrafficEnabled="{Binding IsToggled, Source={x:Reference ShowTrafficSwitch}}"
-             IsZoomEnabled="{Binding IsToggled, Source={x:Reference ZoomEnabledSwitch}}"
-             IsScrollEnabled="{Binding IsToggled, Source={x:Reference ScrollEnabledSwitch}}"/>
+             IsShowingUser="{Binding IsToggled, Source={x:Reference ShowUserLocationSwitch}}"/>
     </Grid>
 </ContentPage>

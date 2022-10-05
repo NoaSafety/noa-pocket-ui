@@ -2,18 +2,18 @@
 <Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:maps="clr-namespace:Noa.PocketUi.Main.Maps"
-       xmlns:pages="clr-namespace:Noa.PocketUi.Main.Pages"
+       xmlns:views="clr-namespace:Noa.PocketUi.Main.Views"
        x:Class="Noa.PocketUi.Main.MainPage"
-       Title="NOA">
+       Title="NOA Pocket UI">
     <TabBar>
         <Tab Title="Messages" Icon="message">
-            <ShellContent ContentTemplate="{DataTemplate pages:Messages}" />
+            <ShellContent ContentTemplate="{DataTemplate views:Messages}" />
         </Tab>
         <Tab Title="Map" Icon="map">
-            <ShellContent ContentTemplate="{DataTemplate maps:BasicMapGallery}" />
+            <ShellContent ContentTemplate="{DataTemplate views:Map}" />
         </Tab>
         <Tab Title="Profile" Icon="user">
-            <ShellContent ContentTemplate="{DataTemplate pages:Profile}" />
+            <ShellContent ContentTemplate="{DataTemplate maps:BasicMapGallery}" />
         </Tab>
     </TabBar>
 </Shell>

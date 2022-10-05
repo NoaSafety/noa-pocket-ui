@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Noa.PocketUi.Main.Views.Map"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewmodel="clr-namespace:Noa.PocketUi.Main.ViewModels"
+    x:DataType="viewmodel:MapViewModel">
+    <Map x:Name="map" ItemsSource="{Binding SosCalls}" IsShowingUser="{Binding IsShowingUser}">
+        <Map.ItemTemplate>
+            <DataTemplate>
+                <Pin x:DataType="viewmodel:PinItemViewModel"
+                        Address="{Binding Label}"
+                        Label="{Binding Description}"
+                        Location="{Binding Position}"/>
+            </DataTemplate>
+        </Map.ItemTemplate>
+    </Map>
+</ContentPage>
