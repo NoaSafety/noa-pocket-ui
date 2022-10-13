@@ -7,14 +7,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewmodel="clr-namespace:Noa.PocketUi.Main.ViewModels"
     x:DataType="viewmodel:MapViewModel">
-    <Map x:Name="map" ItemsSource="{Binding SosCalls}" IsShowingUser="{Binding IsShowingUser}">
-        <Map.ItemTemplate>
-            <DataTemplate>
-                <Pin x:DataType="viewmodel:PinItemViewModel"
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Map x:Name="map" ItemsSource="{Binding SosCalls}" IsShowingUser="{Binding IsShowingUser}" Grid.Row="0">
+            <Map.ItemTemplate>
+                <DataTemplate>
+                    <Pin x:DataType="viewmodel:PinItemViewModel"
                         Address="{Binding Label}"
                         Label="{Binding Description}"
                         Location="{Binding Position}"/>
-            </DataTemplate>
-        </Map.ItemTemplate>
-    </Map>
+                </DataTemplate>
+            </Map.ItemTemplate>
+        </Map>
+        <Button 
+            Text="Sos!"
+            FontAttributes="Bold"
+            Command="{Binding SendSOSCallCommand }"
+            CornerRadius="0"
+            Grid.Row="1"
+            HorizontalOptions="FillAndExpand"/>
+    </Grid>
 </ContentPage>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Noa.PocketUi.Main.Configuration;
+using Noa.PocketUi.Main.Services;
 using Noa.PocketUi.Main.ViewModels;
 using Noa.PocketUi.Main.Views;
 using Noa.PocketUI.Client;
@@ -40,7 +41,9 @@ public static class MauiProgram
 
 	private static void ConfigureServices(this IServiceCollection services)
 	{
-		services.AddTransient<MainPage>();
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddScoped<IMqttService, MqttService>();
+        services.AddTransient<MainPage>();
         services.AddTransient<Map>();
         services.AddTransient<MapViewModel>();
         services.AddHttpClients();
