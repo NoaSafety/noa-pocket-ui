@@ -16,18 +16,19 @@ public partial class MapViewModel : ObservableObject
     bool isShowingUser;
 
     [ObservableProperty]
-    ObservableCollection<PinItemViewModel> sosCalls;
+    ObservableCollection<PinItemViewModel> sosCalls = new ObservableCollection<PinItemViewModel>();
 
     public MapViewModel(IMqttService mqttService, ISectorService sectorService)
     {
         _mqttService = mqttService;
         _sectorService = sectorService;
-        SosCalls = new ObservableCollection<PinItemViewModel>()
+        _mqttService.ConfigureSOSCallback((call) =>
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                new PinItemViewModel("New York, USA", "The City That Never Sleeps", new Position(40.67, -73.94)),
-                new PinItemViewModel("Los Angeles, USA", "City of Angels", new Position(34.11, -118.41)),
-                new PinItemViewModel("San Francisco, USA", "Bay City", new Position(37.77, -122.45))
-            };
+                SosCalls.Add(new("SOS", "j'ai pas l'info mec", new(call.Coordinates.Latitude, call.Coordinates.Longitude)));
+            });
+        });
         // If assigning directly IsShowingUser to true, the map isn't displaying the user location,
         // maybe a bug related to this : https://stackoverflow.com/questions/26651329/isshowinguser-not-working-in-xamarin-forms
         Task.Factory.StartNew(() => { Thread.Sleep(2000); IsShowingUser = true; });

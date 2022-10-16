@@ -43,7 +43,7 @@ public static class MauiProgram
 	{
         services.AddHttpClients();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
-        services.AddScoped<IMqttService, MqttService>();
+        services.AddSingleton<IMqttService, MqttService>();
         services.AddSingleton<ISectorService, SectorService>();
         services.AddTransient<MainPage>();
         services.AddTransient<Map>();

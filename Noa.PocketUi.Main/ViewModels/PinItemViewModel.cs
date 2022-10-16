@@ -5,7 +5,6 @@ namespace Noa.PocketUi.Main.ViewModels;
 
 public class PinItemViewModel : BaseViewModel
 {
-    private Position _position;
     public string Label { get; }
     public string Description { get; }
 
