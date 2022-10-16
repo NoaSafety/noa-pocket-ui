@@ -18,10 +18,10 @@ public class MqttService : IMqttService
         _mqttMessageDirector = new MqttMessageDirector();
     }
 
-    public async Task SendSosAsync(Location location)
+    public async Task SendSosAsync(Location location, string sector = NOAConfiguration.MqttDefaultTopic)
     {
         await EnsureMQTTConnectionAsync();
-        var sos = _mqttMessageDirector.BuildSOSCall(_authenticationService.GetUserId(), NOAConfiguration.MqttDefaultTopic, location.Latitude, location.Longitude);
+        var sos = _mqttMessageDirector.BuildSOSCall(_authenticationService.GetUserId(), sector, location.Latitude, location.Longitude);
         await _mqttClient.PublishAsync(sos);    
     }
 

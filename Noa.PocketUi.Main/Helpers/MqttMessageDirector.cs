@@ -33,7 +33,7 @@ public class MqttMessageDirector
         });
 
         return _builder
-            .WithTopic("sos")
+            .WithTopic(topic)
             .WithPayload(payload)
             .WithQualityOfServiceLevel(MQTTnet.Protocol.MqttQualityOfServiceLevel.AtLeastOnce)
             .Build();

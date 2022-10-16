@@ -13,9 +13,9 @@ namespace Noa.PocketUI.Main.Configuration
     {
         public static IServiceCollection AddHttpClients(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddHttpClient<ILocationClient, LocationClient>().ConfigureHttpClient((serviceProvider, httpClient) =>
+            serviceCollection.AddHttpClient<ISectorClient, SectorClient>().ConfigureHttpClient((serviceProvider, httpClient) =>
             {
-                httpClient.BaseAddress = new Uri(NOAConfiguration.LocationServiceURL);
+                httpClient.BaseAddress = new Uri(NOAConfiguration.SectorServiceURL);
                 httpClient.Timeout = TimeSpan.FromMilliseconds(NOAConfiguration.RequestTimeout);
                 httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
             });

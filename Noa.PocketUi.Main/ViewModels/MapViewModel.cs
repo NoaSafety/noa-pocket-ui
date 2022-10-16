@@ -10,6 +10,7 @@ namespace Noa.PocketUi.Main.ViewModels;
 public partial class MapViewModel : ObservableObject
 {
     private readonly IMqttService _mqttService;
+    private readonly ISectorService _sectorService;
 
     [ObservableProperty]
     bool isShowingUser;
@@ -17,9 +18,10 @@ public partial class MapViewModel : ObservableObject
     [ObservableProperty]
     ObservableCollection<PinItemViewModel> sosCalls;
 
-    public MapViewModel(IMqttService mqttService)
+    public MapViewModel(IMqttService mqttService, ISectorService sectorService)
     {
         _mqttService = mqttService;
+        _sectorService = sectorService;
         SosCalls = new ObservableCollection<PinItemViewModel>()
             {
                 new PinItemViewModel("New York, USA", "The City That Never Sleeps", new Position(40.67, -73.94)),
@@ -28,13 +30,13 @@ public partial class MapViewModel : ObservableObject
             };
         // If assigning directly IsShowingUser to true, the map isn't displaying the user location,
         // maybe a bug related to this : https://stackoverflow.com/questions/26651329/isshowinguser-not-working-in-xamarin-forms
-        Task.Factory.StartNew(() => { Thread.Sleep(1000); IsShowingUser = true; });
+        Task.Factory.StartNew(() => { Thread.Sleep(2000); IsShowingUser = true; });
     }
 
     [RelayCommand]
     private async Task SendSOSCallAsync()
     {
         var location = await Geolocation.Default.GetLastKnownLocationAsync();
-        await _mqttService.SendSosAsync(location);
+        await _mqttService.SendSosAsync(location, _sectorService.GetSector());
     }
 }

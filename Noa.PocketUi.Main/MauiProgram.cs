@@ -41,11 +41,12 @@ public static class MauiProgram
 
 	private static void ConfigureServices(this IServiceCollection services)
 	{
+        services.AddHttpClients();
         services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddScoped<IMqttService, MqttService>();
+        services.AddSingleton<ISectorService, SectorService>();
         services.AddTransient<MainPage>();
         services.AddTransient<Map>();
         services.AddTransient<MapViewModel>();
-        services.AddHttpClients();
     }
 }

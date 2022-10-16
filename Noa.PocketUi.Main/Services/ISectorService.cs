@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Noa.PocketUi.Main.Services;
 
-public interface IMqttService
+public interface ISectorService
 {
-    Task SendSosAsync(Location location, string sector);
+    public string GetSector();
+
+    public List<string> GetSectorArea();
 }

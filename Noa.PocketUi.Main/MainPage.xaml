@@ -10,10 +10,10 @@
             <ShellContent ContentTemplate="{DataTemplate views:Messages}" />
         </Tab>
         <Tab Title="Map" Icon="map">
-            <ShellContent ContentTemplate="{DataTemplate views:Map}" />
+            <ShellContent x:Name="mapItem" ContentTemplate="{DataTemplate views:Map}" />
         </Tab>
         <Tab Title="Profile" Icon="user">
-            <ShellContent ContentTemplate="{DataTemplate maps:BasicMapGallery}" />
+            <ShellContent ContentTemplate="{DataTemplate views:Profile}" />
         </Tab>
     </TabBar>
 </Shell>
