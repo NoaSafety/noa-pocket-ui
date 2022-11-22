@@ -15,7 +15,7 @@
 		<ApplicationTitle>Noa.PocketUi.Main</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.noa.pocketui.main</ApplicationId>
+		<ApplicationId>com.bobjamin.noa.pocketui.main</ApplicationId>
 		<ApplicationIdGuid>0b46d857-06cc-47a7-8b3a-521804e47c90</ApplicationIdGuid>
 
 		<!-- Versions -->
@@ -57,6 +57,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0-rc.1.22426.10" />
 		<PackageReference Include="Microsoft.Maui.Controls.Maps" Version="7.0.0-rc.1.6683" />
 		<PackageReference Include="MQTTnet" Version="4.1.1.318" />
+		<PackageReference Include="Plugin.NFC" Version="0.1.26" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -65,6 +66,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Login.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Map.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -72,6 +76,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Profile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Register.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

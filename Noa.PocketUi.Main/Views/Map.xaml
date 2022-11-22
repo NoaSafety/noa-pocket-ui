@@ -5,8 +5,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://schemas.microsoft.com/dotnet/2021/maui/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:viewmodel="clr-namespace:Noa.PocketUi.Main.ViewModels"
-    x:DataType="viewmodel:MapViewModel">
+    xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
+    x:DataType="viewmodels:MapViewModel">
+    <Shell.BackButtonBehavior>
+        <BackButtonBehavior IsVisible="False" IsEnabled="False" />
+    </Shell.BackButtonBehavior>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -15,7 +18,7 @@
         <Map x:Name="map" ItemsSource="{Binding SosCalls}" IsShowingUser="{Binding IsShowingUser}" Grid.Row="0">
             <Map.ItemTemplate>
                 <DataTemplate>
-                    <Pin x:DataType="viewmodel:PinItemViewModel"
+                    <Pin x:DataType="viewmodels:PinItemViewModel"
                         Address="{Binding Label}"
                         Label="{Binding Description}"
                         Location="{Binding Position}"/>

@@ -1,36 +1,30 @@
 ﻿using Noa.PocketUi.Contract.Authentication;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Noa.PocketUI.Client;
 
 namespace Noa.PocketUi.Main.Services;
 
 public class AuthenticationService : IAuthenticationService
 {
-    private Guid UserId { get; set; }
-    private string Token { get; set; }
+    private readonly IAuthenticationClient _authenticationClient;
 
-    public AuthenticationService()
+    private SessionToken _sessionToken;
+
+    public AuthenticationService(IAuthenticationClient authenticationClient)
     {
-        // TODO: Implement login call in login page
-        UserId = Guid.NewGuid();
-        Token = Guid.NewGuid().ToString();
+        _authenticationClient = authenticationClient;
     }
 
-    public Guid GetUserId() => UserId;
+    public Guid GetUserId() => _sessionToken.UserId;
 
     public async Task LoginAsync(string username, string password)
     {
-        // TODO: Send an actual request
-        var response = new Credentials()
-        {
-            UserId = Guid.NewGuid(),
-            Token = Guid.NewGuid().ToString(),
-        };
+        var token = await _authenticationClient.LoginAsync(username, password);
+        _sessionToken = token;
+    }
 
-        UserId = response.UserId;
-        Token = response.Token;
+    public async Task RegisterAsync(string username, string password, string email)
+    {
+        var token = await _authenticationClient.RegisterAsync(username, password, email);
+        _sessionToken = token;
     }
 }

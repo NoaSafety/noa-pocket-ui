@@ -1,9 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Noa.PocketUi.Main.Services;
-using Noa.PocketUI.Client;
 using System.Collections.ObjectModel;
-using Position = Microsoft.Maui.Devices.Sensors.Location;
 
 namespace Noa.PocketUi.Main.ViewModels;
 
@@ -26,7 +24,7 @@ public partial class MapViewModel : ObservableObject
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                SosCalls.Add(new("SOS", "j'ai pas l'info mec", new(call.Coordinates.Latitude, call.Coordinates.Longitude)));
+                SosCalls.Add(new("SOS", "j'ai pas l'info mec", new(call.Latitude, call.Longitude)));
             });
         });
         // If assigning directly IsShowingUser to true, the map isn't displaying the user location,

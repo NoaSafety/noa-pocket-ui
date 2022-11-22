@@ -10,4 +10,5 @@ public interface IAuthenticationService
 {
     Guid GetUserId();
     Task LoginAsync(string username, string password);
+    Task RegisterAsync(string username, string password, string email);
 }

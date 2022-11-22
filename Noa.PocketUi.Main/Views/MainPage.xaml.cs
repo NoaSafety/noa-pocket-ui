@@ -1,4 +1,4 @@
-﻿namespace Noa.PocketUi.Main;
+﻿namespace Noa.PocketUi.Main.Views;
 
 public partial class MainPage : Shell
 {

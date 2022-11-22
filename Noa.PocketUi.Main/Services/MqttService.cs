@@ -34,24 +34,26 @@ public class MqttService : IMqttService
     public void ConfigureSOSCallback(Action<SOSCall> SOSCallback) => _SOSCallback = SOSCallback;
     public async Task ResetAndSubscribeAsync(List<string> sectors)
     {
-        await EnsureMQTTConnectionAsync();
-        await _mqttClient.UnsubscribeAsync(new MqttClientUnsubscribeOptions()
+        if(_mqttClient.IsConnected)
         {
-            TopicFilters = new() { "*" }
-        });
-        await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
-        {
-            TopicFilters = sectors.Select(s => new MqttTopicFilter
+            await _mqttClient.UnsubscribeAsync(new MqttClientUnsubscribeOptions()
             {
-                Topic = s
-            }).ToList()
-        });
+                TopicFilters = new() { "*" }
+            });
+            await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
+            {
+                TopicFilters = sectors.Select(s => new MqttTopicFilter
+                {
+                    Topic = $"noa/{s}/alerts"
+                }).ToList()
+            });
+        }
     }
 
     public async Task SendSosAsync(Location location, string sector = NOAConfiguration.MqttDefaultTopic)
     {
         await EnsureMQTTConnectionAsync();
-        var sos = _mqttMessageDirector.BuildSOSCall(_authenticationService.GetUserId(), sector, location.Latitude, location.Longitude);
+        var sos = _mqttMessageDirector.BuildSOSCall(_authenticationService.GetUserId(), $"noa/{sector}/alerts", location.Latitude, location.Longitude);
         await _mqttClient.PublishAsync(sos);    
     }
 
@@ -62,6 +64,7 @@ public class MqttService : IMqttService
             await _mqttClient.ConnectAsync(new MqttClientOptionsBuilder()
             .WithClientId(_authenticationService.GetUserId().ToString())
             .WithTcpServer(NOAConfiguration.MqttBrokerAddress, NOAConfiguration.MqttBrokerPort)
+            .WithTls()
             .WithCleanSession()
             .Build());
         }

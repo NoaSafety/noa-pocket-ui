@@ -1,6 +1,5 @@
 ﻿using Position = Microsoft.Maui.Devices.Sensors.Location;
 
-
 namespace Noa.PocketUi.Main.ViewModels;
 
 public class PinItemViewModel : BaseViewModel

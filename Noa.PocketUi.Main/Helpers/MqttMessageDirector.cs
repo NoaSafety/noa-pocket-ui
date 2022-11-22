@@ -23,13 +23,10 @@ public class MqttMessageDirector
     {
         var payload = JsonSerializer.Serialize(new SOSCall()
         {
-            UserId = userId,
-            Coordinates = new GPSCoordinates()
-            {
-                Latitude = latitude,
-                Longitude = longitude
-            },
-            Timestamp = TimeSpan.FromTicks(DateTime.Now.Ticks)
+            Id = userId,
+            Latitude = latitude,
+            Longitude = longitude,
+            Timestamp = (uint)TimeSpan.FromTicks(DateTime.Now.Ticks).TotalSeconds
         });
 
         return _builder

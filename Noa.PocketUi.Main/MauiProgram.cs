@@ -47,6 +47,12 @@ public static class MauiProgram
         services.AddSingleton<ISectorService, SectorService>();
         services.AddTransient<MainPage>();
         services.AddTransient<Map>();
+        services.AddTransient<Login>();
+        services.AddTransient<Register>();
+        services.AddTransient<Profile>();
+        services.AddTransient<LoginViewModel>();
+        services.AddTransient<RegisterViewModel>();
         services.AddTransient<MapViewModel>();
+        services.AddTransient<ProfileViewModel>();
     }
 }

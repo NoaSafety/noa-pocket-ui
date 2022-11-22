@@ -7,6 +7,7 @@ public class SectorService : ISectorService
 {
     private readonly ISectorClient _sectorClient;
     private readonly IMqttService _mqttService;
+    private Location _currentLocation = new Location(0,0);
     private string _sector;
     private List<string> _sectorArea;
 
@@ -25,9 +26,12 @@ public class SectorService : ISectorService
     {
         while (true)
         {
-            var location = await Geolocation.Default.GetLastKnownLocationAsync();
-            _sector = await _sectorClient.GetSectorAsync(location.Latitude, location.Longitude);
-            _sectorArea = await _sectorClient.GetSectorAreaAsync(location.Latitude, location.Longitude);
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                _currentLocation = await Geolocation.Default.GetLastKnownLocationAsync() ?? new Location(0,0);
+            });
+            _sector = await _sectorClient.GetSectorAsync(_currentLocation.Latitude, _currentLocation.Longitude);
+            _sectorArea = await _sectorClient.GetSectorAreaAsync(_currentLocation.Latitude, _currentLocation.Longitude);
             await _mqttService.ResetAndSubscribeAsync(_sectorArea);
             Thread.Sleep(NOAConfiguration.SectorRefreshDelay);
         }

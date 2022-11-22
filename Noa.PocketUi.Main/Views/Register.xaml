@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
+             x:Class="Noa.PocketUi.Main.Views.Register"
+             x:DataType="viewmodels:RegisterViewModel">
+    <VerticalStackLayout>
+
+        <Label 
+            Text="LoginPage"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        
+        <Label 
+            x:Name="error"
+            Text="{Binding Error}"
+            TextColor="Red"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+
+        <Entry x:Name="username"
+               Placeholder="Username"
+               Text="{Binding Username}" />
+
+        <Entry x:Name="password"
+               Placeholder="Password"
+               IsPassword="true"
+               Text="{Binding Password}" />
+
+        <Entry x:Name="email"
+               Placeholder="Email"
+               Text="{Binding Email}" />
+
+        <Button 
+            Text="Create an account"
+            FontAttributes="Bold"
+            Command="{Binding RegisterCommand}"/>
+        
+    </VerticalStackLayout>
+</ContentPage>
