@@ -14,20 +14,21 @@ public partial class ProfileViewModel : ObservableObject
     [ObservableProperty]
     string userId;
 
+    [ObservableProperty]
+    string nfcError;
+
     public ProfileViewModel(IAuthenticationService authenticationService)
     {
         _authenticationService = authenticationService;
-        CrossNFC.Current.OnMessageReceived += OnNFCMessageReceived;
     }
 
     public void LoadUserId()
     {
         UserId = _authenticationService.GetUserId().ToString();
-        CrossNFC.Current.StartListening();
     }
 
-    private void OnNFCMessageReceived(ITagInfo info)
+    public Guid GetUserId()
     {
-        Console.WriteLine(info);
+        throw new NotImplementedException();
     }
 }

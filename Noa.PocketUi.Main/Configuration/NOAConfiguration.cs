@@ -10,7 +10,7 @@ namespace Noa.PocketUi.Main.Configuration
     {
         public const string ServiceName = "PocketUI";
         public const string SectorServiceURL = "http://51.77.140.61:10000/";
-        public const string AuthenticationServiceURL = "http://192.168.1.47:5216/";
+        public const string AuthenticationServiceURL = "http://192.168.1.36:5216/";
         public const string MqttDefaultTopic = "sos";
         public const string MqttBrokerAddress = "noa.broker";
         public const int MqttBrokerPort = 1883;

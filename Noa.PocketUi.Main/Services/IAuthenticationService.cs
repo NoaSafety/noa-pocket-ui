@@ -9,6 +9,7 @@ namespace Noa.PocketUi.Main.Services;
 public interface IAuthenticationService
 {
     Guid GetUserId();
+    bool IsAdmin();
     Task LoginAsync(string username, string password);
     Task RegisterAsync(string username, string password, string email);
 }

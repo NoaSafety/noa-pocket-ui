@@ -2,13 +2,13 @@
 using CommunityToolkit.Mvvm.Input;
 using Noa.PocketUi.Main.Services;
 using Noa.PocketUi.Main.Views;
-using Map = Noa.PocketUi.Main.Views.Map;
 
 namespace Noa.PocketUi.Main.ViewModels;
 
 public partial class LoginViewModel : ObservableObject
 {
     private readonly IAuthenticationService _authenticationService;
+
 
     [ObservableProperty]
     string error;
@@ -31,7 +31,7 @@ public partial class LoginViewModel : ObservableObject
         {
             Error = "";
             await _authenticationService.LoginAsync(Username, Password);
-            Application.Current.MainPage = new MainPage();
+            Application.Current.MainPage = new MainPage(new MainViewModel(_authenticationService));
         }
         catch (Exception ex)
         {

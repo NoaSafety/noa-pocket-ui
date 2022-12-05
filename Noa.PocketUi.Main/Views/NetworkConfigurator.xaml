@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Noa.PocketUi.Main.Views.NetworkConfigurator"
+             xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
+             x:DataType="viewmodels:NetworkConfiguratorViewModel"
+             Title="Network Configurator">
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
+
+            <VerticalStackLayout Margin="0, 0, 0, 10">
+
+                <Label Text="SSID" Margin="5, 0, 0, 0"/>
+
+                <Entry x:Name="ssid"
+               Placeholder="Proximus-Home-7C56"
+               Text="{Binding Ssid}" />
+ 
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="0, 0, 0, 10">
+
+                <Label Text="Password" Margin="5, 0, 0, 0"/>
+
+                <Entry x:Name="psk"
+               Placeholder="Password"
+               IsPassword="true"
+               Text="{Binding Psk}" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="0, 0, 0, 10">
+
+                <Label Text="Encryption" Margin="5, 0, 0, 0"/>
+
+                <Entry x:Name="encryption"
+               Placeholder="WPA-PSK"
+               Text="{Binding Encryption}" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="0, 0, 0, 10">
+
+                <Label Text="IP Address" Margin="5, 0, 0, 0"/>
+
+                <Entry x:Name="ip"
+               Placeholder="192.168.1.1/24"
+               Text="{Binding Ip}" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="0, 0, 0, 10">
+
+                <Label Text="Gateway" Margin="5, 0, 0, 0"/>
+
+                <Entry x:Name="gateway"
+               Placeholder="192.168.1.254"
+               Text="{Binding Gateway}" />
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Margin="0, 0, 0, 10">
+
+                <Label Text="DNS" Margin="5, 0, 0, 0"/>
+
+                <Entry x:Name="dns"
+               Placeholder="9.9.9.9"
+               Text="{Binding Dns}" />
+
+            </VerticalStackLayout>
+
+            <Button 
+            Text="Generate QR Code"
+            FontAttributes="Bold"
+            Command="{Binding GenerateQRCodeCommand}"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

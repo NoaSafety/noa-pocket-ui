@@ -1,13 +1,14 @@
-﻿namespace Noa.PocketUi.Main.Views;
+﻿using Noa.PocketUi.Main.ViewModels;
+
+namespace Noa.PocketUi.Main.Views;
 
 public partial class MainPage : Shell
 {
-	public MainPage()
+	public MainPage(MainViewModel viewModel)
 	{
 		InitializeComponent();
 		CurrentItem = mapItem;
-		// TODO: Setup login process
-
-	}
+		BindingContext = viewModel;
+    }
 }
 
