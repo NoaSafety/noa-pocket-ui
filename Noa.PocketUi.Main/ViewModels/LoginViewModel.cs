@@ -33,9 +33,17 @@ public partial class LoginViewModel : ObservableObject
             await _authenticationService.LoginAsync(Username, Password);
             Application.Current.MainPage = new MainPage(new MainViewModel(_authenticationService));
         }
+        catch (InvalidCredentialsException ex)
+        {
+            Error = "Invalid account";
+        }
+        catch (MissingAccountConfirmationException ex)
+        {
+            Error = "This account has not been verified"; 
+        }
         catch (Exception ex)
         {
-            Error = "An error occured";
+            Error = "An unknown error occured";
         }
     }
 

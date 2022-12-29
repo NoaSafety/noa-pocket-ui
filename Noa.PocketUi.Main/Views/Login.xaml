@@ -3,45 +3,72 @@
             x:Class="Noa.PocketUi.Main.Views.Login"
             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
             xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
-            x:DataType="viewmodels:LoginViewModel">
-    <VerticalStackLayout>
-        
-        <Label 
-            Text="LoginPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            xmlns:images="clr-namespace:Logo"
+            x:DataType="viewmodels:LoginViewModel"
+            Title="">
 
-        <Label 
-            x:Name="error"
-            Text="{Binding Error}"
-            TextColor="Red"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <Page.Behaviors>
+        <mct:StatusBarBehavior StatusBarColor="#ffae03"/>
+    </Page.Behaviors>
 
-        <Entry x:Name="username"
-               Placeholder="Username"
-               Text="{Binding Username}" />
+    <VerticalStackLayout Padding="20">
+        <Image Source="noa_logo" HeightRequest="70" BackgroundColor="Transparent" WidthRequest="400" Margin="0,20"/>
 
-        <Entry x:Name="password"
-               Placeholder="Password"
-               IsPassword="true"
-               Text="{Binding Password}" />
+        <VerticalStackLayout Padding="5,0">
+            <Label Text="Welcome!" Margin="0,0,0,10" FontAttributes="Bold" FontSize="32"/>
+            <Label Text="Sign In to continue"/>
+        </VerticalStackLayout>
 
-        <Button 
-            Text="Login"
-            FontAttributes="Bold"
-            Command="{Binding LoginCommand}"/>
+        <VerticalStackLayout VerticalOptions="Center" Margin="0,0,0,30">
 
-        <Label 
-            Text="OR"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+            <Label 
+                x:Name="error"
+                Text="{Binding Error}"
+                TextColor="Red"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                Margin="0, 10"/>
 
-        <Button 
-            Text="Register"
-            FontAttributes="Bold"
-            Command="{Binding RegCommand}"/>
-        
+            <Entry 
+                x:Name="username"
+                Placeholder="Username"
+                Text="{Binding Username}" 
+                Margin="0, 10"/>
+
+            <Entry 
+                x:Name="password"
+                Placeholder="Password"
+                IsPassword="true"
+                Text="{Binding Password}" 
+                Margin="0, 10"/>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout VerticalOptions="Center">
+            <Button 
+                Text="Login"
+                FontAttributes="Bold"
+                CornerRadius="0"
+                Padding="0,15"
+                Command="{Binding LoginCommand}"/>
+
+            <Label 
+                Margin="0,15,0,15"
+                Text="Or"
+                FontAttributes="Bold"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
+
+            <Button 
+                Text="Register"
+                FontAttributes="Bold"
+                Command="{Binding RegCommand}"
+                CornerRadius="0"
+                Padding="15"
+                Margin="0,2"/>
+        </VerticalStackLayout>
+
     </VerticalStackLayout>
 </ContentPage>

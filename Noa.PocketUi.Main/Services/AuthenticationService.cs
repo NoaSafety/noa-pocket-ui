@@ -27,6 +27,11 @@ public class AuthenticationService : IAuthenticationService
     public async Task RegisterAsync(string username, string password, string email)
     {
         var token = await _authenticationClient.RegisterAsync(username, password, email);
-        _sessionToken = token;
+    }
+
+    public async Task<UserData> GetUserDataAsync(Guid id)
+    {
+        var userData = await _authenticationClient.GetUserDataAsync(id);
+        return userData;
     }
 }

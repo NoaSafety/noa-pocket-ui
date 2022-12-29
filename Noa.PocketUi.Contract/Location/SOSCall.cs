@@ -18,4 +18,6 @@ public class SOSCall
 
     [JsonPropertyName("time")]
     public UInt32 Timestamp { get; set; }
+
+    public string Name { get; set; }
 }

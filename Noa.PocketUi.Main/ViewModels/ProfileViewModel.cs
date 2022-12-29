@@ -1,9 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Noa.PocketUi.Main.Services;
-using Noa.PocketUi.Main.Views;
-using Plugin.NFC;
-using Map = Noa.PocketUi.Main.Views.Map;
 
 namespace Noa.PocketUi.Main.ViewModels;
 

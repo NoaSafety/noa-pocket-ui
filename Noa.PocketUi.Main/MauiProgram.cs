@@ -47,7 +47,7 @@ public static class MauiProgram
 	private static void ConfigureServices(this IServiceCollection services)
 	{
         services.AddHttpClients();
-        services.AddScoped<IAuthenticationService, AuthenticationService>();
+        services.AddSingleton<IAuthenticationService, AuthenticationService>();
         services.AddSingleton<IMqttService, MqttService>();
         services.AddSingleton<ISectorService, SectorService>();
         services.AddTransient<Map>();

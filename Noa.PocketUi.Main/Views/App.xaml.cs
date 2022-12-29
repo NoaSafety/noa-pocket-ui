@@ -1,4 +1,7 @@
-﻿namespace Noa.PocketUi.Main.Views;
+﻿using CommunityToolkit.Maui.Behaviors;
+using CommunityToolkit.Maui.Core;
+
+namespace Noa.PocketUi.Main.Views;
 
 public partial class App : Application
 {
@@ -7,5 +10,5 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new AppShell();
-	}
+    }
 }

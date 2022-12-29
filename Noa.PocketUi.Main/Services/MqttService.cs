@@ -5,7 +5,6 @@ using Noa.PocketUi.Main.Configuration;
 using MQTTnet.Packets;
 using MQTTnet.Server;
 using Noa.PocketUi.Contract.Location;
-using System;
 using System.Text.Json;
 
 namespace Noa.PocketUi.Main.Services;
@@ -22,19 +21,21 @@ public class MqttService : IMqttService
         _authenticationService = authenticationService;
         _mqttClient = new MqttFactory().CreateMqttClient();
         _mqttMessageDirector = new MqttMessageDirector();
-        _mqttClient.ApplicationMessageReceivedAsync += e =>
+        _mqttClient.ApplicationMessageReceivedAsync += async e =>
         {
             var text = e.ApplicationMessage.ConvertPayloadToString();
             var sosCall = JsonSerializer.Deserialize<SOSCall>(text);
+            var userData = await authenticationService.GetUserDataAsync(sosCall.Id);
+            sosCall.Name = userData.UserName ?? sosCall.Id.ToString();
             _SOSCallback(sosCall);
-            return Task.CompletedTask;
         };
     }
 
     public void ConfigureSOSCallback(Action<SOSCall> SOSCallback) => _SOSCallback = SOSCallback;
     public async Task ResetAndSubscribeAsync(List<string> sectors)
     {
-        if(_mqttClient.IsConnected)
+        await EnsureMQTTConnectionAsync();
+        if (_mqttClient.IsConnected)
         {
             await _mqttClient.UnsubscribeAsync(new MqttClientUnsubscribeOptions()
             {
@@ -45,6 +46,13 @@ public class MqttService : IMqttService
                 TopicFilters = sectors.Select(s => new MqttTopicFilter
                 {
                     Topic = $"noa/{s}/alerts"
+                }).ToList()
+            });
+            await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
+            {
+                TopicFilters = sectors.Select(s => new MqttTopicFilter
+                {
+                    Topic = $"noa/{s}/houses"
                 }).ToList()
             });
         }
@@ -62,11 +70,10 @@ public class MqttService : IMqttService
         if(!_mqttClient.IsConnected)
         {
             await _mqttClient.ConnectAsync(new MqttClientOptionsBuilder()
-            .WithClientId(_authenticationService.GetUserId().ToString())
-            .WithTcpServer(NOAConfiguration.MqttBrokerAddress, NOAConfiguration.MqttBrokerPort)
-            .WithTls()
-            .WithCleanSession()
-            .Build());
+                    .WithClientId(_authenticationService.GetUserId().ToString())
+                    .WithTcpServer(NOAConfiguration.MqttBrokerAddress, NOAConfiguration.MqttBrokerPort)
+                    .WithCleanSession()
+                    .Build());
         }
     }
 }

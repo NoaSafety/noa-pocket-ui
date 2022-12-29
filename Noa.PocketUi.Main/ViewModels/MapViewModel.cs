@@ -24,7 +24,7 @@ public partial class MapViewModel : ObservableObject
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                SosCalls.Add(new("SOS", "j'ai pas l'info mec", new(call.Latitude, call.Longitude)));
+                SosCalls.Add(new($"From {call.Name}", "SOS Call", new(call.Latitude, call.Longitude)));
             });
         });
         // If assigning directly IsShowingUser to true, the map isn't displaying the user location,

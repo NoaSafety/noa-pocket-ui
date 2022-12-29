@@ -9,8 +9,9 @@ namespace Noa.PocketUI.Client
 {
     public interface IAuthenticationClient
     {
-        public Task<SessionToken> LoginAsync(string username, string password);
+        Task<UserData> GetUserDataAsync(Guid id);
+        Task<SessionToken> LoginAsync(string username, string password);
 
-        public Task<SessionToken> RegisterAsync(string username, string password, string email);
+        Task<bool> RegisterAsync(string username, string password, string email);
     }
 }
