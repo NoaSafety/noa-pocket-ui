@@ -12,18 +12,16 @@ public partial class Profile : ContentPage
 		InitializeComponent();
         _profileViewModel = profileViewModel;
         BindingContext = profileViewModel;
-		Loaded += (s, e) =>
-        {
-            profileViewModel.LoadUserId();
-        };
     }
 
-    Task ShowAlert(string message, string title = null) => DisplayAlert(string.IsNullOrWhiteSpace(title) ? "test" : title, message, "OK");
+    Task ShowAlert(string message, string title = null) => DisplayAlert(string.IsNullOrWhiteSpace(title) ? "NFC" : title, message, "OK");
 
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
+        _profileViewModel.LoadUserData();
 
         CrossNFC.Legacy = true;
 

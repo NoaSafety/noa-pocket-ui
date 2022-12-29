@@ -8,11 +8,13 @@ public class PinItemViewModel : BaseViewModel
     public string Description { get; }
 
     public Position Position { get; set; }
+    public UInt32 Timestamp { get; set; }
 
-    public PinItemViewModel(string label, string description, Position position)
+    public PinItemViewModel(string label, string description, Position position, UInt32 timestamp)
     {
         Label = label;
         Description = description;
         Position = position;
+        Timestamp = timestamp;
     }
 }

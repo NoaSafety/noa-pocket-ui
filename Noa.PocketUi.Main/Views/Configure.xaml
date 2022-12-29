@@ -4,15 +4,22 @@
              x:Class="Noa.PocketUi.Main.Views.Configure"
              xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
              x:DataType="viewmodels:ConfigureViewModel">
-    <VerticalStackLayout>
-        <Label 
-            Text="Configure Page"
+    <VerticalStackLayout Padding="20">
+
+        <VerticalStackLayout Margin="0,0,0,200">
+            <Label 
+            Text="Configure"
+            FontSize="30"
+            FontAttributes="Bold"
             VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+                HorizontalOptions="Center"/>
+
+        </VerticalStackLayout>
 
         <Button 
             Text="Network Configurator"
             FontAttributes="Bold"
+            CornerRadius="0"
             Command="{Binding GoToNetworkConfiguratorCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

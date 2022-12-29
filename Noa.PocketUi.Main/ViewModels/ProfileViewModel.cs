@@ -13,18 +13,18 @@ public partial class ProfileViewModel : ObservableObject
     [ObservableProperty]
     string nfcError;
 
+    [ObservableProperty]
+    string connectionString;
+
     public ProfileViewModel(IAuthenticationService authenticationService)
     {
         _authenticationService = authenticationService;
     }
 
-    public void LoadUserId()
+    public async Task LoadUserData()
     {
-        UserId = _authenticationService.GetUserId().ToString();
-    }
-
-    public Guid GetUserId()
-    {
-        throw new NotImplementedException();
+        var data = await _authenticationService.GetUserDataAsync(_authenticationService.GetUserId());
+        UserId = data.Id.ToString();
+        ConnectionString = $"Connected as {data.UserName}";
     }
 }

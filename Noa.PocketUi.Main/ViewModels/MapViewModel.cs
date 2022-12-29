@@ -24,12 +24,21 @@ public partial class MapViewModel : ObservableObject
         {
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                SosCalls.Add(new($"From {call.Name}", "SOS Call", new(call.Latitude, call.Longitude)));
+                SosCalls.Add(new($"From {call.Name}", "SOS Call", new(call.Latitude, call.Longitude), call.Timestamp));
             });
         });
         // If assigning directly IsShowingUser to true, the map isn't displaying the user location,
         // maybe a bug related to this : https://stackoverflow.com/questions/26651329/isshowinguser-not-working-in-xamarin-forms
         Task.Factory.StartNew(() => { Thread.Sleep(2000); IsShowingUser = true; });
+    }
+
+    public async Task CheckPinsExpirationAsync()
+    {
+        /*foreach(var call in SosCalls)
+        {
+            if (call.Timestamp < DateTimeOffset.Now.ToUnixTimeSeconds() - 30)
+                SosCalls.Remove(call);
+        }*/
     }
 
     [RelayCommand]

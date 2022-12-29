@@ -12,7 +12,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 
 		<!-- Display name -->
-		<ApplicationTitle>Noa.PocketUi.Main</ApplicationTitle>
+		<ApplicationTitle>NOA Pocket UI</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.bobjamin.noa.pocketui.main</ApplicationId>
@@ -32,7 +32,8 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#ffae03" />
+		<MauiIcon Include="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\noalogo.svg" Color="#ffae03" BaseSize="175,175" />
@@ -50,7 +51,9 @@
 
 	<ItemGroup>
 	  <None Remove="platforms\android\resources\values\styles.xml" />
+	  <None Remove="Resources\AppIcon\appiconfg.svg" />
 	  <None Remove="Resources\AppIcon\noa_logo.png" />
+	  <None Remove="Resources\Images\nfc.png" />
 	  <None Remove="Resources\Images\noalogo.png" />
 	</ItemGroup>
 
