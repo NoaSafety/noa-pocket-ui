@@ -11,6 +11,7 @@ public partial class Map : ContentPage
     {
         InitializeComponent();
         BindingContext = mapViewModel;
+        _mapViewModel = mapViewModel;
     }
 
     protected override async void OnAppearing()

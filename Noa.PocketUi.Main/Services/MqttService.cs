@@ -37,24 +37,30 @@ public class MqttService : IMqttService
         await EnsureMQTTConnectionAsync();
         if (_mqttClient.IsConnected)
         {
-            await _mqttClient.UnsubscribeAsync(new MqttClientUnsubscribeOptions()
+            try
             {
-                TopicFilters = new() { "*" }
-            });
-            await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
-            {
-                TopicFilters = sectors.Select(s => new MqttTopicFilter
+                await _mqttClient.UnsubscribeAsync(new MqttClientUnsubscribeOptions()
                 {
-                    Topic = $"noa/{s}/alerts"
-                }).ToList()
-            });
-            await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
-            {
-                TopicFilters = sectors.Select(s => new MqttTopicFilter
+                    TopicFilters = new() { "*" }
+                });
+                await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
                 {
-                    Topic = $"noa/{s}/houses"
-                }).ToList()
-            });
+                    TopicFilters = sectors.Select(s => new MqttTopicFilter
+                    {
+                        Topic = $"noa/{s}/alerts"
+                    }).ToList()
+                });
+                await _mqttClient.SubscribeAsync(new MqttClientSubscribeOptions()
+                {
+                    TopicFilters = sectors.Select(s => new MqttTopicFilter
+                    {
+                        Topic = $"noa/{s}/houses"
+                    }).ToList()
+                });
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
     }
 

@@ -1,6 +1,7 @@
 ﻿using Noa.PocketUi.Contract.Authentication;
 using Noa.PocketUI.Client;
 using System.Net.Http.Json;
+using System.Security.Authentication;
 using System.Text.Json;
 
 namespace Noa.PocketUI.Client
@@ -16,12 +17,11 @@ namespace Noa.PocketUI.Client
 
         public async Task<SessionToken> LoginAsync(string username, string password)
         {
-            var uri = new Uri(_httpClient.BaseAddress, $"tokens");
-            var response = await _httpClient.PostAsJsonAsync<LoginDTO>(uri, new()
+            var response = await _httpClient.PostAsJsonAsync<LoginDTO>("tokens", new()
             {
                 Username = username,
                 Password = password
-            });
+            }).ConfigureAwait(false);
 
             if (response.StatusCode == System.Net.HttpStatusCode.NotFound || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
                 throw new InvalidCredentialsException("Wrong Login/Password combination");
@@ -34,8 +34,7 @@ namespace Noa.PocketUI.Client
 
         public async Task<bool> RegisterAsync(string username, string password, string email)
         {
-            var uri = new Uri(_httpClient.BaseAddress, $"tokens/registration");
-            var response = await _httpClient.PostAsJsonAsync<RegisterDTO>(uri, new()
+            var response = await _httpClient.PostAsJsonAsync<RegisterDTO>("tokens/registration", new()
             {
                 Login = username,
                 Password = password,

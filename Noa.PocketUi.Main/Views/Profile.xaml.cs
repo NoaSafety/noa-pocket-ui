@@ -28,10 +28,10 @@ public partial class Profile : ContentPage
         if (CrossNFC.IsSupported)
         {
             if (!CrossNFC.Current.IsAvailable)
-                await ShowAlert("NFC is not available");
+                Console.WriteLine("NFC is not available");
 
             if (!CrossNFC.Current.IsEnabled)
-                await ShowAlert("NFC is disabled");
+                Console.WriteLine("NFC is disabled");
 
             await AutoStartAsync().ConfigureAwait(false);
         }
