@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Noa.PocketUi.Main.Views.Profile"
+             xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
+             x:DataType="viewmodels:ProfileViewModel">
+    <VerticalStackLayout>
+        
+        <VerticalStackLayout Padding="20" Grid.Row="0">
+            <Label Text="Profile" FontAttributes="Bold" FontSize="30" HorizontalOptions="Center"/>
+            <Label Text="{Binding ConnectionString}" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+        
+        <Image Source="nfc" HeightRequest="140" WidthRequest="400" Margin="0,60"/>
+
+        <VerticalStackLayout Grid.Row="2">
+            <Image Source="noa_logo" HeightRequest="50" WidthRequest="400" Margin="0,20"/>
+
+            <Label 
+                    Text="Version 1.0.0"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" />
+
+            <Label 
+                    FontSize="10"
+                    Text="{Binding UserId}"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>

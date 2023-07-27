@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Noa.PocketUi.Main.Views.QRCodeDisplayer"
+             xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
+             xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI"
+             x:DataType="viewmodels:NetworkConfiguratorViewModel">
+    <VerticalStackLayout xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI">
+
+        <zxing:BarcodeGeneratorView
+            HeightRequest="300"
+            WidthRequest="300"
+            ForegroundColor="DarkBlue"
+            Value="{Binding JsonConfig}"
+            Format="QrCode"
+            Margin="3" />
+
+    </VerticalStackLayout>
+</toolkit:Popup>

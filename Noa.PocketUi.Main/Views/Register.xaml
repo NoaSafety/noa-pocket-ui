@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:Noa.PocketUi.Main.ViewModels"
+             x:Class="Noa.PocketUi.Main.Views.Register"
+             x:DataType="viewmodels:RegisterViewModel">
+
+    <VerticalStackLayout>
+        <VerticalStackLayout>
+            <VerticalStackLayout Margin="20,30">
+                <Label Text="Register" Margin="0,0,0,10" FontAttributes="Bold" FontSize="32"/>
+                <Label Text="Fill in your informations"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout VerticalOptions="Center" Margin="0,0,0,0" Padding="20">
+
+            <Label 
+            x:Name="error"
+            Text="{Binding Error}"
+            TextColor="Red"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center"
+            Margin="0, 10"/>
+
+            <Entry x:Name="username"
+               Placeholder="Username"
+               Text="{Binding Username}" 
+               Margin="0, 10"/>
+
+            <Entry x:Name="password"
+               Placeholder="Password"
+               IsPassword="true"
+               Text="{Binding Password}" 
+               Margin="0, 10"/>
+
+            <Entry x:Name="email"
+               Placeholder="Email"
+               Text="{Binding Email}"
+               Margin="0, 10"/>
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Padding="20">
+
+            <Button 
+            Text="Create an account"
+            FontAttributes="Bold"
+            CornerRadius="0"
+            Command="{Binding RegisterCommand}"
+            Padding="15"/>
+
+        </VerticalStackLayout>
+    </VerticalStackLayout>
+</ContentPage>
